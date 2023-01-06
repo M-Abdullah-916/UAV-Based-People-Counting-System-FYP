@@ -21,3 +21,31 @@ def extractKeypoints(Image_List):
         # Find matching points
         matches = bruteForce.knnMatch(descriptors1, descriptors2, k=2)
 
+        matches_all = []
+        for m, n in matches:
+            matches_all.append(m)
+        # Finding the best matches
+        good = []
+        for m, n in matches:
+            if m.distance < 0.6 * n.distance:  # Threshold
+                good.append(m)
+
+        # Set minimum match condition
+        MIN_MATCH_COUNT = 5
+
+        if len(good) > MIN_MATCH_COUNT:
+
+            # Converting keypoints to an argument for findHomography
+            source_points = np.float32([keypoints1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+            destination_points = np.float32([keypoints2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+
+            # Establish a homography
+            M, _ = cv2.findHomography(source_points, destination_points, cv2.RANSAC, 5.0)
+            result = WarpImages.warpedImage(image2, image1, M)
+            Image_List.insert(0, result)
+
+            if len(Image_List) == 1:
+                break
+    result = cv2.cvtColor(result, cv2.COLOR_BGR2RGB)
+    return result
+
