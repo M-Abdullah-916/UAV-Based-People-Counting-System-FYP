@@ -112,6 +112,17 @@ def imageCollation():
 
     collate.mainloop()
 
+def addImage():
+    print("TBD")
+
+def manageDrone():
+    print("TBD")
+
+def checkHistory():
+    print("TBD")
+
+def exitSystem():
+    print("TBD")
 
 
 if __name__ == '__main__':
