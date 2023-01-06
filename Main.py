@@ -6,6 +6,8 @@ from tkinter import ttk
 from tkinter import *
 from PIL import ImageTk, Image
 
+import Image_Stitching
+
 splashWindow = Tk()
 splashWindow.configure(background='#0FB5DA')
 
