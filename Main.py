@@ -75,6 +75,45 @@ def mainWindow():
 
     main.mainloop()
 
+def selectFolder():
+    folder_name = filedialog.askdirectory(initialdir="/", title="Select a Folder")
+    if folder_name != "":
+        Image_Stitching.stichImages(folder_name.format(string))
+
+
+def imageCollation():
+    collate = tkinter.Toplevel()
+    collate.title('UAV-BASED PEOPLE COUNTING SYSTEM')
+    collate.iconbitmap('Logo.ico')
+    collate.minsize(1000, 700)
+    collate.maxsize(1000, 700)
+    collate.geometry('1000x700')
+
+    collate.configure(background='#0FB5DA')
+
+    logo = Image.open('Logo.PNG')
+    resized_logo = logo.resize((290, 130))
+    logo = ImageTk.PhotoImage(resized_logo)
+    logo_label = Label(collate, image=logo, background='#0FB5DA')
+    logo_label.pack(pady=(10, 10))
+
+    text_logo = Label(collate, text='UAV-Based People Counting System', fg='white', bg='#0FB5DA')
+    text_logo.config(font=('verdana', 24))
+    text_logo.pack()
+
+    folder_label = Label(collate, text='Open a Folder', bg='#0FB5DA', fg='black')
+    folder_label.config(font=('verdana', 16))
+    folder_label.pack(pady=(20, 10))
+    browse_button = Button(collate, text='Browse a Folder', command=selectFolder, bg='white', fg='black', width=20, height=2)
+    browse_button.pack(pady=(5, 5))
+
+    exit_button = Button(collate, text='Exit', command=collate.destroy, bg='white', fg='black', width=20, height=2)
+    exit_button.pack(pady=(5, 5))
+
+    collate.mainloop()
+
+
+
 if __name__ == '__main__':
     progress()
     splashWindow.after(3500, mainWindow)
