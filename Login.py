@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from PIL import ImageTk, Image
 import bcrypt
 import time
@@ -8,6 +8,8 @@ import Main
 # Temporary Database
 registered_users_emails = []
 registered_users_passwords = []
+registered_users_hashed_passwords = []
+user_index = 0
 
 splashWindow = Tk()
 splashWindow.configure(background='#0FB5DA')
@@ -99,7 +101,25 @@ class Registration:
         self.main.mainloop()
 
     def add_user(self):
-        print("TEMP")
+        email = self.email_entry.get()
+        password = self.password_entry.get()
+        confirm_password = self.confirm_password_entry.get()
+
+        if password == confirm_password:
+            # PASSWORD ENCRYPTION
+            byte_password = password.encode('utf-8')
+            salt = bcrypt.gensalt()
+            pwd_hash = bcrypt.hashpw(byte_password, salt)
+            password = password.encode('utf-8')
+            registered_users_emails.insert(user_index, email)
+            registered_users_passwords.insert(user_index, password)
+            registered_users_hashed_passwords.insert(user_index, pwd_hash)
+            messagebox.showinfo("Message", "Successfully Registered!")
+            login_screen = Login()
+            self.main.destroy()
+            login_screen.login_screen()
+        else:
+            messagebox.showinfo("Message", "Password Does Not Match!")
 
 
 class Login:
@@ -110,7 +130,6 @@ class Login:
         self.credentials = [0, 0]
 
     def login_screen(self):
-        splashWindow.destroy()
         self.main = Tk()
         self.main.title('UAV-BASED PEOPLE COUNTING SYSTEM')
         self.main.iconbitmap('Logo.ico')
@@ -164,7 +183,7 @@ class Login:
         pwd_hash = bcrypt.hashpw(byte_password, salt)
         password = password.encode('utf-8')
 
-        if email == "yes" and bcrypt.checkpw(password, pwd_hash):
+        if email == registered_users_emails.pop() and bcrypt.checkpw(registered_users_passwords.pop(), registered_users_hashed_passwords.pop()):
             self.main.destroy()
             Main.main_window()
 
