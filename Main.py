@@ -1,41 +1,12 @@
 import tkinter
-import time
 from tkinter import filedialog
-from tkinter import ttk
 from tkinter import *
 from PIL import ImageTk, Image
 import Image_Stitching
 
-splashWindow = Tk()
-splashWindow.configure(background='#0FB5DA')
-appWidth = 720
-appHeight = 680
-screenWidth = splashWindow.winfo_screenwidth()
-screenHeight = splashWindow.winfo_screenheight()
-
-xCoordinates = (screenWidth / 2) - (appWidth / 2)
-yCoordinates = (screenHeight / 2) - (appHeight / 2)
-
-splashWindow.overrideredirect(True)
-splashWindow.geometry(f'{appWidth}x{appHeight}+{int(xCoordinates)}+{int(yCoordinates)}')
-splashBackground = PhotoImage(file="Logo.png")
-pictureLabel = Label(splashWindow, image=splashBackground, bg='#0FB5DA')
-pictureLabel.place(x=0, y=0, relwidth=1, relheight=1)
-
-progressBar = ttk.Progressbar(splashWindow, orient=HORIZONTAL, length=300, mode='determinate')
-progressBar.place(x=170, y=450, relwidth=0.5, relheight=0.05)
-
-
-def splash_screen():
-    progressBar.start(20)
-    for x in range(5):
-        progressBar['value'] += 20
-        splashWindow.update_idletasks()
-        time.sleep(1)
-
 
 def main_window():
-    splashWindow.destroy()
+    # splashWindow.destroy()
     main = Tk()
     main.title('UAV-BASED PEOPLE COUNTING SYSTEM')
     main.iconbitmap('Logo.ico')
@@ -55,14 +26,17 @@ def main_window():
     text_logo.config(font=('verdana', 24))
     text_logo.pack()
 
-    add_image_button = Button(main, text='Add Images', command=add_image, bg='white', fg='black', width=30, height=2)
+    add_image_button = Button(main, text='Add Images', command=add_image, bg='white', fg='black', width=30,
+                              height=2)
     add_image_button.pack(pady=(15, 5))
 
-    manage_drone_button = Button(main, text='Provide Coordinates to Drone', command=manage_drone, bg='white', fg='black'
+    manage_drone_button = Button(main, text='Provide Coordinates to Drone', command=manage_drone, bg='white',
+                                 fg='black'
                                  , width=30, height=2)
     manage_drone_button.pack(pady=(5, 5))
 
-    collate_image_button = Button(main, text='Collate Images', command=image_collation, bg='white', fg='black', width=30
+    collate_image_button = Button(main, text='Collate Images', command=image_collation, bg='white', fg='black',
+                                  width=30
                                   , height=2)
     collate_image_button.pack(pady=(5, 5))
 
@@ -81,6 +55,8 @@ def select_folder():
     if folder_name != "":
         stitching_object = Image_Stitching.ImageCollation(folder_name)
         stitching_object.stitching()
+    else:
+        return 0
 
 
 def image_collation():
@@ -129,6 +105,4 @@ def check_history():
 
 
 if __name__ == '__main__':
-    splash_screen()
-    splashWindow.after(3500, main_window)
     mainloop()
