@@ -23,17 +23,7 @@ def extract_keypoints(image_list):
         # Find matching points
         matches = brute_force.knnMatch(descriptors1, descriptors2, k=2)
 
-        matches_all = []
-        for m, n in matches:
-            matches_all.append(m)
-        # Finding the best matches
-        good = []
-        for m, n in matches:
-            if m.distance < 0.6 * n.distance:  # Threshold
-                good.append(m)
-
-        # Set minimum match condition
-        min_match_count = 5
+        
 
         if len(good) > min_match_count:
 

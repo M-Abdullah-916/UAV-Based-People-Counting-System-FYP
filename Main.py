@@ -5,7 +5,6 @@ from PIL import ImageTk, Image
 import Image_Stitching
 from tkinter import messagebox
 
-
 def main_window():
     main = Tk()
     main.title('UAV-BASED PEOPLE COUNTING SYSTEM')
