@@ -76,8 +76,8 @@ def mainWindow():
 def selectFolder():
     folder_name = filedialog.askdirectory(initialdir="/", title="Select a Folder")
     if folder_name != "":
-        stitching_object = Image_Stitching.stichImages(folder_name)
-        stitching_object.stiching()
+        stitching_object = Image_Stitching.ImageCollation(folder_name)
+        stitching_object.stitching()
 
 
 def imageCollation():

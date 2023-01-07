@@ -3,15 +3,16 @@ import matplotlib.pyplot as plt
 import Extract_Keypoints
 
 
-class stichImages:
-    def __init__(self, imagesPath):
-        self.imagesPath = imagesPath
+class ImageCollation:
+    def __init__(self, images_path):
+        self.imagesPath = images_path
 
-    def stiching(self):
+    def stitching(self):
         # getting Images
-        Image_List = Utils.loadImages(self.imagesPath)
+        image_loading_object = Utils.ReceiveImages(self.imagesPath)
+        image_list = image_loading_object.load_images()
         # Plotting Final Stitched Image
         plt.figure(figsize=(10, 10))
         plt.title('Image After Collation')
-        plt.imshow(Extract_Keypoints.extractKeypoints(Image_List))
+        plt.imshow(Extract_Keypoints.extractKeypoints(image_list))
         plt.show()
