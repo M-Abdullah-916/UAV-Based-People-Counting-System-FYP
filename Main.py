@@ -3,10 +3,10 @@ from tkinter import filedialog
 from tkinter import *
 from PIL import ImageTk, Image
 import Image_Stitching
+from tkinter import messagebox
 
 
 def main_window():
-    # splashWindow.destroy()
     main = Tk()
     main.title('UAV-BASED PEOPLE COUNTING SYSTEM')
     main.iconbitmap('Logo.ico')
@@ -93,15 +93,15 @@ def image_collation():
 
 
 def add_image():
-    print("TBD")
+    messagebox.showinfo("Message", "Functionality Under Development.")
 
 
 def manage_drone():
-    print("TBD")
+    messagebox.showinfo("Message", "Functionality Under Development.")
 
 
 def check_history():
-    print("TBD")
+    messagebox.showinfo("Message", "Functionality Under Development.")
 
 
 if __name__ == '__main__':
