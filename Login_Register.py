@@ -26,7 +26,6 @@ class Registration:
         self.main.minsize(1000, 700)
         self.main.maxsize(1000, 700)
         self.main.geometry('1000x700')
-
         self.main.configure(background='#0FB5DA')
 
         logo = Image.open('Logo.PNG')
@@ -35,7 +34,7 @@ class Registration:
         logo_label = Label(self.main, image=logo, background='#0FB5DA')
         logo_label.pack(pady=(10, 10))
 
-        text_logo = Label(self.main, text='UAV-Based People Counting System', fg='white', bg='#0FB5DA')
+        text_logo = Label(self.main, text='UAV-Based People Counting System', fg='black', bg='#0FB5DA')
         text_logo.config(font=('verdana', 24))
         text_logo.pack()
 
@@ -44,7 +43,7 @@ class Registration:
         email_label.pack(pady=(40, 10))
 
         self.email_entry = Entry(self.main)
-        self.email_entry.config(width=50)
+        self.email_entry.config(width=30,font=20)
         self.email_entry.pack()
 
         password_label = Label(self.main, text='Enter your Password', fg='black', bg='#0FB5DA')
@@ -52,7 +51,7 @@ class Registration:
         password_label.pack(pady=(20, 10))
 
         self.password_entry = Entry(self.main)
-        self.password_entry.config(width=50)
+        self.password_entry.config(width=30,font=20)
         self.password_entry.pack()
 
         password_label = Label(self.main, text='Confirm your Password', fg='black', bg='#0FB5DA')
@@ -60,16 +59,16 @@ class Registration:
         password_label.pack(pady=(20, 10))
 
         self.confirm_password_entry = Entry(self.main)
-        self.confirm_password_entry.config(width=50)
+        self.confirm_password_entry.config(width=30,font=20)
         self.confirm_password_entry.pack()
 
-        add_image_button = Button(self.main, text='Register', command=self.add_user, bg='white', fg='black',
+        add_image_button = Button(self.main, text='Register', command=self.add_user, bg='black', fg='white',
                                   width=30,
                                   height=2)
         add_image_button.config(font=('verdana', 11), border=10)
         add_image_button.pack(pady=(40, 5))
 
-        exit_button = Button(self.main, text='Exit', command=self.main.destroy, bg='white', fg='black',
+        exit_button = Button(self.main, text='Exit', command=self.main.destroy, bg='black', fg='white',
                              width=30,
                              height=2)
         exit_button.pack(pady=(50, 5))
@@ -121,7 +120,7 @@ class Login:
         logo_label = Label(self.main, image=logo, background='#0FB5DA')
         logo_label.pack(pady=(10, 10))
 
-        text_logo = Label(self.main, text='UAV-Based People Counting System', fg='white', bg='#0FB5DA')
+        text_logo = Label(self.main, text='UAV-Based People Counting System', fg='black', bg='#0FB5DA')
         text_logo.config(font=('verdana', 24))
         text_logo.pack()
 
@@ -130,7 +129,7 @@ class Login:
         email_label.pack(pady=(60, 10))
 
         self.email_entry = Entry(self.main)
-        self.email_entry.config(width=50)
+        self.email_entry.config(width=30,font=20)
         self.email_entry.pack()
 
         password_label = Label(self.main, text='Enter your Password', fg='black', bg='#0FB5DA')
@@ -138,22 +137,22 @@ class Login:
         password_label.pack(pady=(30, 10))
 
         self.password_entry = Entry(self.main)
-        self.password_entry.config(width=50)
+        self.password_entry.config(width=30,font=20)
         self.password_entry.pack()
 
-        add_image_button = Button(self.main, text='Login', command=self.check_credentials, bg='white', fg='black',
+        add_image_button = Button(self.main, text='Login', command=self.check_credentials, bg='black', fg='white',
                                   width=30,
                                   height=2)
         add_image_button.config(font=('verdana', 11), border=10)
         add_image_button.pack(pady=(60, 5))
 
-        registration_button = Button(self.main, text='Sign Up', command=self.registration_panel, bg='white', fg='black',
+        registration_button = Button(self.main, text='Sign Up', command=self.registration_panel, bg='black', fg='white',
                                   width=10,
                                   height=2)
         registration_button.config(font=('verdana', 7), border=5)
         registration_button.pack(pady=(10, 5))
 
-        exit_button = Button(self.main, text='Exit', command=self.main.destroy, bg='white', fg='black',
+        exit_button = Button(self.main, text='Exit', command=self.main.destroy,bg='black', fg='white',
                              width=30,
                              height=2)
         exit_button.pack(pady=(30, 5))

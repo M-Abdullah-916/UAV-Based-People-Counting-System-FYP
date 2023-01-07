@@ -52,21 +52,22 @@ class PreDashboard:
         logo = ImageTk.PhotoImage(resized_logo)
         logo_label = Label(self.main, image=logo, background='#0FB5DA')
         logo_label.pack(pady=(10, 10))
-
-        text_logo = Label(self.main, text='UAV-Based People Counting System', fg='white', bg='#0FB5DA')
+        custom_font = ("Times", 14, 'bold')
+        text_logo = Label(self.main, text='UAV-Based People Counting System', fg='black', bg='#0FB5DA')
         text_logo.config(font=('verdana', 24))
         text_logo.pack()
 
-        login_button = Button(self.main, text='Login', command=self.login_panel, bg='white', fg='black', width=30,
+        login_button = Button(self.main, text='Login', font=custom_font, command=self.login_panel, bg='black', fg='white', width=30,
                               height=2)
         login_button.pack(pady=(80, 5))
 
-        registration_button = Button(self.main, text='Sign Up', command=self.registration_panel, bg='white', fg='black',
+        registration_button = Button(self.main, text='Sign Up', font=custom_font, command=self.registration_panel,
+                                     bg='black', fg='white',
                                      width=30,
-                                     height=2)
+                                     height=2, )
         registration_button.pack(pady=(50, 5))
 
-        exit_button = Button(self.main, text='Exit', command=self.main.destroy, bg='white', fg='black',
+        exit_button = Button(self.main, text='Exit', font=custom_font, command=self.main.destroy, bg='black', fg='white',
                              width=30,
                              height=2)
         exit_button.pack(pady=(50, 5))
