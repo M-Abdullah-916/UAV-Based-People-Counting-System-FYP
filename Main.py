@@ -1,16 +1,13 @@
-import string
 import tkinter
 import time
 from tkinter import filedialog
 from tkinter import ttk
 from tkinter import *
 from PIL import ImageTk, Image
-
 import Image_Stitching
 
 splashWindow = Tk()
 splashWindow.configure(background='#0FB5DA')
-
 appWidth = 720
 appHeight = 680
 screenWidth = splashWindow.winfo_screenwidth()
@@ -28,14 +25,13 @@ pictureLabel.place(x=0, y=0, relwidth=1, relheight=1)
 progressBar = ttk.Progressbar(splashWindow, orient=HORIZONTAL, length=300, mode='determinate')
 progressBar.place(x=170, y=450, relwidth=0.5, relheight=0.05)
 
+def splashScreen():
 
-def progress():
     progressBar.start(20)
     for x in range(5):
         progressBar['value'] += 20
         splashWindow.update_idletasks()
         time.sleep(1)
-
 
 def mainWindow():
     splashWindow.destroy()
@@ -49,7 +45,7 @@ def mainWindow():
     main.configure(background='#0FB5DA')
 
     logo = Image.open('Logo.PNG')
-    resized_logo = logo.resize((290, 130))
+    resized_logo = logo.resize((310, 130))
     logo = ImageTk.PhotoImage(resized_logo)
     logo_label = Label(main, image=logo, background='#0FB5DA')
     logo_label.pack(pady=(10, 10))
@@ -80,7 +76,8 @@ def mainWindow():
 def selectFolder():
     folder_name = filedialog.askdirectory(initialdir="/", title="Select a Folder")
     if folder_name != "":
-        Image_Stitching.stichImages(folder_name.format(string))
+        stitching_object = Image_Stitching.stichImages(folder_name)
+        stitching_object.stiching()
 
 
 def imageCollation():
@@ -94,7 +91,7 @@ def imageCollation():
     collate.configure(background='#0FB5DA')
 
     logo = Image.open('Logo.PNG')
-    resized_logo = logo.resize((290, 130))
+    resized_logo = logo.resize((310, 130))
     logo = ImageTk.PhotoImage(resized_logo)
     logo_label = Label(collate, image=logo, background='#0FB5DA')
     logo_label.pack(pady=(10, 10))
@@ -128,7 +125,7 @@ def exitSystem():
 
 
 if __name__ == '__main__':
-    progress()
+    splashScreen()
     splashWindow.after(3500, mainWindow)
     mainloop()
 
