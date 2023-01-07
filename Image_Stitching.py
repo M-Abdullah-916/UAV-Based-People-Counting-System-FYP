@@ -14,5 +14,5 @@ class ImageCollation:
         # Plotting Final Stitched Image
         plt.figure(figsize=(10, 10))
         plt.title('Image After Collation')
-        plt.imshow(Extract_Keypoints.extractKeypoints(image_list))
+        plt.imshow(Extract_Keypoints.extract_keypoints(image_list))
         plt.show()

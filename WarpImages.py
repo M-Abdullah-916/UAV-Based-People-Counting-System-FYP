@@ -1,14 +1,17 @@
 import cv2
 import numpy as np
 
-def warpedImage(image1, image2, H):
+
+def warped_image(image1, image2, H):
     rows1, columns1 = image1.shape[:2]
     rows2, columns2 = image2.shape[:2]
 
     list_of_points_one = np.float32([[0, 0], [0, rows1], [columns1, rows1], [columns1, 0]]).reshape(-1, 1,
-                                                                                                    2)  # coordinates of a reference image
+                                                                                                    2)  # coordinates
+    # of a reference image
     temporary_points = np.float32([[0, 0], [0, rows2], [columns2, rows2], [columns2, 0]]).reshape(-1, 1,
-                                                                                                  2)  # coordinates of second image
+                                                                                                  2)  # coordinates
+    # of second image
 
     # Warp perspective after establishing homography
     # Change field of view
@@ -21,9 +24,9 @@ def warpedImage(image1, image2, H):
 
     translation_distance = [-x_min, -y_min]
 
-    H_translation = np.array([[1, 0, translation_distance[0]], [0, 1, translation_distance[1]], [0, 0, 1]])
+    h_translation = np.array([[1, 0, translation_distance[0]], [0, 1, translation_distance[1]], [0, 0, 1]])
 
-    output_image = cv2.warpPerspective(image2, H_translation.dot(H), (x_max - x_min, y_max - y_min))
+    output_image = cv2.warpPerspective(image2, h_translation.dot(H), (x_max - x_min, y_max - y_min))
     output_image[translation_distance[1]:rows1 + translation_distance[1],
     translation_distance[0]:columns1 + translation_distance[0]] = image1
 
