@@ -12,6 +12,14 @@ registered_users_hashed_passwords = []
 user_index = 0
 
 
+def isValid(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    if re.fullmatch(regex, email):
+        return 0
+    else:
+        return 1
+
+
 class Registration:
     def __init__(self):
         self.confirm_password_entry = None
@@ -84,7 +92,8 @@ class Registration:
         if password == '' or email == '':
             messagebox.showinfo("Message", "Enter Credentials")
 
-
+        elif isValid(email):
+            messagebox.showinfo("Message", "Enter a Valid Email")
 
         elif password == confirm_password:
             # PASSWORD ENCRYPTION
