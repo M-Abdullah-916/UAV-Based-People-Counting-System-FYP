@@ -2,9 +2,7 @@ import time
 from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk, Image
-
 import Login_Register
-from Login_Register import Login
 
 splashWindow = Tk()
 splashWindow.configure(background='#0FB5DA')
@@ -63,22 +61,28 @@ class PreDashboard:
                               height=2)
         login_button.pack(pady=(80, 5))
 
-        registration_button = Button(self.main, text='Sign Up', command=self.registration_panel, bg='white', fg='black', width=30,
+        registration_button = Button(self.main, text='Sign Up', command=self.registration_panel, bg='white', fg='black',
+                                     width=30,
                                      height=2)
         registration_button.pack(pady=(50, 5))
 
+        exit_button = Button(self.main, text='Exit', command=self.main.destroy, bg='white', fg='black',
+                             width=30,
+                             height=2)
+        exit_button.pack(pady=(50, 5))
+
         self.main.mainloop()
-    
+
     def login_panel(self):
         login = Login_Register.Login()
         self.main.destroy()
         login.login_screen()
-    
+
     def registration_panel(self):
         registration = Login_Register.Registration()
         self.main.destroy()
         registration.registration_screen()
-        
+
 
 if __name__ == '__main__':
     splash_screen()
