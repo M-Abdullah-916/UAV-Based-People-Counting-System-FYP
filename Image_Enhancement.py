@@ -91,7 +91,7 @@ class Enhancement:
 
     def adapt_image_to_color_scale(self,image, color_scale):
         color = None
-        if (color_scale != 'gray'):
+        if color_scale != 'gray':
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         else:
             color = "gray"

@@ -22,5 +22,3 @@ class ImageCollation:
     def image_enhancement(self):
         image_enhancement_object = Image_Enhancement.Enhancement(self.imagesPath)
         image_enhancement_object.enhance_image()
-
-

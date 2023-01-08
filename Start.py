@@ -57,19 +57,16 @@ class PreDashboard:
         text_logo.config(font=('verdana', 24))
         text_logo.pack()
 
-        login_button = Button(self.main, text='Login', font=custom_font, command=self.login_panel, bg='black', fg='white', width=30,
-                              height=2)
+        login_button = Button(self.main, text='Login', font=custom_font, command=self.login_panel, bg='black',
+                              fg='white', width=30, height=2)
         login_button.pack(pady=(80, 5))
 
         registration_button = Button(self.main, text='Sign Up', font=custom_font, command=self.registration_panel,
-                                     bg='black', fg='white',
-                                     width=30,
-                                     height=2, )
+                                     bg='black', fg='white', width=30, height=2, )
         registration_button.pack(pady=(50, 5))
 
-        exit_button = Button(self.main, text='Exit', font=custom_font, command=self.main.destroy, bg='black', fg='white',
-                             width=30,
-                             height=2)
+        exit_button = Button(self.main, text='Exit', font=custom_font, command=self.main.destroy, bg='black',
+                             fg='white', width=30, height=2)
         exit_button.pack(pady=(50, 5))
 
         self.main.mainloop()
