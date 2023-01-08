@@ -6,7 +6,8 @@ import cv2
 
 
 class Enhancement:
-    def __init__(self):
+    def __init__(self, images_path):
+        self.imagesPath = images_path
         self.count = 0
 
     def image_is_in_gray_scale(self, image):
@@ -87,3 +88,25 @@ class Enhancement:
                     if not np.array_equal(output[i, j], [255, 255, 255]):
                         output[i, j] = image[i, j]
         return output.astype(np.uint8)
+
+    def adapt_image_to_color_scale(self,image, color_scale):
+        color = None
+        if (color_scale != 'gray'):
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        else:
+            color = "gray"
+        return image, color
+
+    def enhance_image(self):
+        image_loading_object = Utils.ReceiveImages(self.imagesPath)
+        image_list = image_loading_object.load_images()
+        final_image = Extract_Keypoints.extract_keypoints(image_list)
+        plt.figure(figsize=(10, 10))
+        plt.title('Enhancement (Local Thresholding) After Collation')
+        output = self.local_thresholding(final_image, 7)
+        plt.imshow(output)
+        plt.show()
+        plt.figure(figsize=(10, 10))
+        plt.title('Enhancement (Negative) After Collation')
+        plt.imshow(self.make_image_negative(final_image))
+        plt.show()
