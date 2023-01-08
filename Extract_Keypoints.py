@@ -42,6 +42,7 @@ def extract_keypoints(image_list):
             destination_points = np.float32([waypoints2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
 
             # Establish a homography
+            # Homography => for proper images orientation
             m, _ = cv2.findHomography(source_points, destination_points, cv2.RANSAC, 5.0)
             result = WarpImages.warped_image(image2, image1, m)
             image_list.insert(0, result)

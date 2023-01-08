@@ -9,10 +9,9 @@ import Main
 registered_users_emails = []
 registered_users_passwords = []
 registered_users_hashed_passwords = []
-user_index = 0
 
 
-def isValid(email):
+def is_valid(email):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     if re.fullmatch(regex, email):
         return 0
@@ -92,7 +91,7 @@ class Registration:
         if password == '' or email == '':
             messagebox.showinfo("Message", "Enter Credentials")
 
-        elif isValid(email):
+        elif is_valid(email):
             messagebox.showinfo("Message", "Enter a Valid Email")
 
         elif password == confirm_password:
@@ -101,9 +100,9 @@ class Registration:
             salt = bcrypt.gensalt()
             pwd_hash = bcrypt.hashpw(byte_password, salt)
             password = password.encode('utf-8')
-            registered_users_emails.insert(user_index, email)
-            registered_users_passwords.insert(user_index, password)
-            registered_users_hashed_passwords.insert(user_index, pwd_hash)
+            registered_users_emails.insert(0, email)
+            registered_users_passwords.insert(0, password)
+            registered_users_hashed_passwords.insert(0, pwd_hash)
             messagebox.showinfo("Message", "Successfully Registered!")
             login_screen = Login()
             self.main.destroy()
@@ -155,11 +154,11 @@ class Login:
         self.password_entry.config(width=30, font=20, show="*")
         self.password_entry.pack()
 
-        add_image_button = Button(self.main, text='Login', command=self.check_credentials, bg='black', fg='white',
-                                  width=30,
-                                  height=2)
-        add_image_button.config(font=('verdana', 11), border=10)
-        add_image_button.pack(pady=(60, 5))
+        login_button = Button(self.main, text='Login', command=self.check_credentials, bg='black', fg='white',
+                              width=30,
+                              height=2)
+        login_button.config(font=('verdana', 11), border=10)
+        login_button.pack(pady=(60, 5))
 
         registration_button = Button(self.main, text='Sign Up', command=self.registration_panel, bg='black', fg='white',
                                      width=10,
@@ -179,16 +178,17 @@ class Login:
         password = self.password_entry.get()
 
         # PASSWORD ENCRYPTION
-        byte_password = password.encode('utf-8')
-        salt = bcrypt.gensalt()
-        pwd_hash = bcrypt.hashpw(byte_password, salt)
         password = password.encode('utf-8')
 
         if password == '' or email == '':
             messagebox.showinfo("Message", "Enter Credentials")
-
-        elif email == registered_users_emails.pop() and bcrypt.checkpw(registered_users_passwords[0],
-                                                                       registered_users_hashed_passwords[0]):
+        elif email != registered_users_emails[0]:
+            messagebox.showinfo("Message", "Email Not Found!")
+        elif not bcrypt.checkpw(password, registered_users_hashed_passwords[0]):
+            messagebox.showinfo("Message", "Password Not Found!")
+        elif email == registered_users_emails[0] and bcrypt.checkpw(registered_users_passwords[0],
+                                                                    registered_users_hashed_passwords[0]):
+            messagebox.showinfo("Message", "Successfully Logged In!")
             self.main.destroy()
             Main.main_window()
 

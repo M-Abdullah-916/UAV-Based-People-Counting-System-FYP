@@ -5,6 +5,7 @@ from PIL import ImageTk, Image
 import Image_Stitching
 from tkinter import messagebox
 
+
 def main_window():
     main = Tk()
     main.title('UAV-BASED PEOPLE COUNTING SYSTEM')
@@ -26,23 +27,24 @@ def main_window():
     text_logo.config(font=('verdana', 24))
     text_logo.pack()
 
-    add_image_button = Button(main, text='Add Images',font=custom_font, command=add_image, bg='black', fg='white', width=30,
-                              height=2)
+    add_image_button = Button(main, text='Add Images', font=custom_font, command=add_image, bg='black', fg='white',
+                              width=30, height=2)
     add_image_button.pack(pady=(45, 5))
 
-    manage_drone_button = Button(main, text='Provide Coordinates to Drone', font=custom_font, command=manage_drone, bg='black', fg='white', width=30, height=2)
+    manage_drone_button = Button(main, text='Provide Coordinates to Drone', font=custom_font, command=manage_drone,
+                                 bg='black', fg='white', width=30, height=2)
     manage_drone_button.pack(pady=(5, 5))
 
-    collate_image_button = Button(main, text='Collate Images', font=custom_font, command=image_collation, bg='black', fg='white',
-                                  width=30
-                                  , height=2)
+    collate_image_button = Button(main, text='Collate Images', font=custom_font, command=image_collation, bg='black',
+                                  fg='white', width=30, height=2)
     collate_image_button.pack(pady=(5, 5))
 
-    history_button = Button(main, text='Check History',font=custom_font, command=check_history, bg='black', fg='white', width=30,
-                            height=2)
+    history_button = Button(main, text='Check History', font=custom_font, command=check_history, bg='black', fg='white',
+                            width=30, height=2)
     history_button.pack(pady=(5, 5))
 
-    exit_button = Button(main, text='Exit', command=main.destroy,font=custom_font, bg='black', fg='white', width=30, height=2)
+    exit_button = Button(main, text='Exit', command=main.destroy, font=custom_font, bg='black', fg='white', width=30,
+                         height=2)
     exit_button.pack(pady=(5, 5))
 
     main.mainloop()
@@ -64,6 +66,7 @@ def image_collation():
     collate.minsize(1000, 700)
     collate.maxsize(1000, 700)
     collate.geometry('1000x700')
+    custom_font = ("Times", 14, 'bold')
 
     collate.configure(background='#0FB5DA')
 
@@ -79,13 +82,14 @@ def image_collation():
 
     folder_label = Label(collate, text='Open a Folder', bg='#0FB5DA', fg='black')
     folder_label.config(font=('verdana', 16))
-    folder_label.pack(pady=(20, 10))
-    browse_button = Button(collate, text='Browse a Folder', command=select_folder, bg='white', fg='black', width=20,
-                           height=2)
+    folder_label.pack(pady=(50, 10))
+    browse_button = Button(collate, text='Browse a Folder', command=select_folder, font=custom_font, bg='black',
+                           fg='white', width=20, height=2)
     browse_button.pack(pady=(5, 5))
 
-    exit_button = Button(collate, text='Exit', command=collate.destroy, bg='white', fg='black', width=20, height=2)
-    exit_button.pack(pady=(5, 5))
+    exit_button = Button(collate, text='Exit', command=collate.destroy, font=custom_font, bg='black', fg='white',
+                         width=20, height=2)
+    exit_button.pack(pady=(15, 5))
 
     collate.mainloop()
 

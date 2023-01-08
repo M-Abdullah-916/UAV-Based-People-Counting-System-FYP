@@ -88,4 +88,5 @@ class PreDashboard:
 if __name__ == '__main__':
     splash_screen()
     pre_dashboard_screen = PreDashboard()
-    splashWindow.after(3500, pre_dashboard_screen.select_choice())
+    splashWindow.after(3500, pre_dashboard_screen.select_choice)
+    mainloop()
