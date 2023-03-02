@@ -9,7 +9,7 @@ class ExtractImages:
 
     def extraction(self):
         # Open the video file
-        video = cv2.VideoCapture("Videos/video.mp4")
+        video = cv2.VideoCapture("Videos/video3.mp4")
 
         # Initialize variables
         frame_count = 0
