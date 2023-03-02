@@ -4,13 +4,13 @@ import glob
 
 class ExtractImages:
 
-    def __int__(self, video_path):
+    def __init__(self, video_path):
         self.video_path = video_path
 
     def extraction(self):
-        path = sorted(glob.glob(self.video_path + "/*.mp4"))
         # Open the video file
-        video = cv2.VideoCapture(path)
+        print (self.video_path)
+        video = cv2.VideoCapture("Videos/video.mp4")
 
         # Initialize variables
         frame_count = 0
@@ -24,7 +24,7 @@ class ExtractImages:
             # If a frame was successfully read
             if success:
                 # Save the frame as a JPEG image
-                cv2.imwrite(f'Extracted_Images/frame{frame_count}.jpg', image)
+                cv2.imwrite(f'Images/frame{frame_count}.jpg', image)
 
                 # Increment the frame counter
                 frame_count += 1
