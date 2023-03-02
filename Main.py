@@ -53,12 +53,8 @@ def main_window():
 
 
 def select_video():
-    folder_name = filedialog.askdirectory(initialdir="/", title="Select a Folder")
-    if folder_name != "":
-        extracting_images = Add_Images_From_Video.ExtractImages(folder_name)
-        extracting_images.extraction()
-    else:
-        return 0
+    extracting_images = Add_Images_From_Video.ExtractImages()
+    extracting_images.extraction()
 
 
 def select_images():
@@ -126,11 +122,11 @@ def add_image():
     text_logo.config(font=('verdana', 24))
     text_logo.pack()
 
-    folder_label = Label(extract, text='Open a Folder', bg='#0FB5DA', fg='black')
+    folder_label = Label(extract, text='Extract Images from Video', bg='#0FB5DA', fg='black')
     folder_label.config(font=('verdana', 16))
     folder_label.pack(pady=(50, 10))
-    browse_button = Button(extract, text='Browse a Folder', command=select_video, font=custom_font, bg='black',
-                           fg='white', width=20, height=2)
+    browse_button = Button(extract, text='Click to Start Process', command=lambda: [select_video(), extract.destroy()],
+                           font=custom_font, bg='black', fg='white', width=20, height=2)
     browse_button.pack(pady=(5, 5))
 
     exit_button = Button(extract, text='Exit', command=extract.destroy, font=custom_font, bg='black', fg='white',

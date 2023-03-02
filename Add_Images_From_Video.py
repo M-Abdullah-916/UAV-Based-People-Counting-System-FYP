@@ -4,12 +4,11 @@ import glob
 
 class ExtractImages:
 
-    def __init__(self, video_path):
-        self.video_path = video_path
+    def __init__(self):
+        self.video_path = 0
 
     def extraction(self):
         # Open the video file
-        print (self.video_path)
         video = cv2.VideoCapture("Videos/video.mp4")
 
         # Initialize variables
